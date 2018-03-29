@@ -25,11 +25,15 @@ public class LineWrapper {
     StringBuilder line = new StringBuilder();
     List<String> lines = new ArrayList<>();
     for (String word : words) {
-      if (line.length() + word.length() + 1 > width && line.length() > 0) {
+      if ((line.length() == 0 && word.length() > width)
+          || (line.length() > 0 && line.length() + word.length() + 1 > width)) {
         lines.add(line.toString());
         line = new StringBuilder();
       }
-      line.append(' ').append(word);
+      if (line.length() > 0) {
+        line.append(' ');
+      }
+      line.append(word);
     }
     lines.add(line.toString());
     return lines.stream()
