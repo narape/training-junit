@@ -25,7 +25,7 @@ public class LineWrapper {
     StringBuilder line = new StringBuilder();
     List<String> lines = new ArrayList<>();
     for (String word : words) {
-      if (line.length() + word.length() + 1 > width) {
+      if (line.length() + word.length() + 1 > width && line.length() > 0) {
         lines.add(line.toString());
         line = new StringBuilder();
       }
