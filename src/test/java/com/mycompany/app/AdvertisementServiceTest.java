@@ -1,22 +1,28 @@
 package com.mycompany.app;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 public class AdvertisementServiceTest {
 
+  private static final String VICTIM_1 = "pepe@gmail.com";
+  private static final String VICTIM_2 = "paco@gmail.com";
+  private static final String NO_VICTIM = "lucky@gmail.com";
+
   @Test
   public void shouldSendEmailToAddressesWithTrueInMap() {
-    AdvertisementService spammer = new AdvertisementService();
+    TestEmailService emailer = new TestEmailService();
+    AdvertisementService spammer = new AdvertisementService(emailer);
     Map<String, Boolean> victims = new HashMap<>();
-    victims.put("pepe@gmail.com", true);
-    victims.put("lucky@gmail.com", false);
+    victims.put(VICTIM_1, true);
+    victims.put(VICTIM_2, true);
+    victims.put(NO_VICTIM, false);
 
     spammer.sendCampaign(victims);
 
-    Assert.fail("No way to test");
+    List<String> expected = Arrays.asList(VICTIM_1, VICTIM_2);
+    Assert.assertEquals(expected, emailer.getSentAddresses());
   }
 }

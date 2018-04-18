@@ -4,13 +4,13 @@ import java.util.Collections;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class EmailServiceTest {
+public class SimpleEmailServiceTest {
 
   private static final String BLACKLISTED_ADDRESS = "thieve@evil.com";
   private static final String EMAIL_BODY = "Please buy milk";
 
-  private final EmailService emailer =
-      new EmailService(Collections.singletonList(BLACKLISTED_ADDRESS));
+  private final SimpleEmailService emailer =
+      new SimpleEmailService(Collections.singletonList(BLACKLISTED_ADDRESS));
 
   @Test
   public void shouldReturnTrueForAddressesNotInTheBlacklist() {
