@@ -12,6 +12,7 @@ public class TestEmailService implements EmailService {
         return true;
     }
 
+    // created just for testing
     List<String> getSentAddresses() {
         return sentAddresses;
     }

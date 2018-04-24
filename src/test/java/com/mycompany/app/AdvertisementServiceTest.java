@@ -13,8 +13,8 @@ public class AdvertisementServiceTest {
 
   @Test
   public void shouldSendEmailToAddressesWithTrueInMap() {
-    TestEmailService emailer = new TestEmailService();
-    AdvertisementService spammer = new AdvertisementService(emailer);
+    TestEmailService spy = new TestEmailService();
+    AdvertisementService spammer = new AdvertisementService(spy);
     Map<String, Boolean> victims = new HashMap<>();
     victims.put(VICTIM_1, true);
     victims.put(VICTIM_2, true);
@@ -23,6 +23,6 @@ public class AdvertisementServiceTest {
     spammer.sendCampaign(victims);
 
     List<String> expected = Arrays.asList(VICTIM_1, VICTIM_2);
-    Assert.assertEquals(expected, emailer.getSentAddresses());
+    Assert.assertEquals(expected, spy.getSentAddresses());
   }
 }
