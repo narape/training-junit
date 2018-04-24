@@ -7,6 +7,8 @@ public class Car {
         return engine.isRunning();
     }
 
+    // Please test that calling starting twice will not call
+    // engine.ignite twice, just once
     public void start() {
         if (!isOn()) {
             engine.ignite();
