@@ -3,6 +3,15 @@ package com.mycompany.app;
 public class RealEngine implements Engine {
     private boolean running;
 
+    public RealEngine() {
+        this(false);
+    }
+
+    //just for testing
+    RealEngine(boolean running) {
+        this.running = running;
+    }
+
     @Override
     public boolean isRunning() {
         return running;
@@ -11,7 +20,7 @@ public class RealEngine implements Engine {
     @Override
     public void ignite() {
         if (isRunning()) {
-            System.out.println("RRRRRRR take it easy, I am running already");
+            throw new IllegalStateException("RRRRRRR take it easy, I am running already");
         } else {
             running = true;
         }
